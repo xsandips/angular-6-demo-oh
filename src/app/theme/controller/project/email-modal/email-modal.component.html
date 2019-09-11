@@ -1,0 +1,53 @@
+<p-dialog header="Send To" [(visible)]="emailModal" [modal]="true" [width]="650" (onHide)="cancelEmail()">
+    <b class="first">Select Document Type:</b>
+    <br>
+    <div class="col-lg-12">
+
+        <div class="col-lg-6">
+            <p-checkbox [(ngModel)]="selectedFileType" label="SWMS" value="swms" name="type" checked> </p-checkbox>
+        </div>
+        <div class="col-lg-6">
+            <p-checkbox name="type" [(ngModel)]="selectedFileType" label="SDS" value="sds"> </p-checkbox>
+        </div>
+        <div class="col-lg-6">
+            <p-checkbox name="type" [(ngModel)]="selectedFileType" label="DRAWING" value="drawing"> </p-checkbox>
+        </div>
+        <div class="col-lg-6">
+            <p-checkbox name="type" [(ngModel)]="selectedFileType" label="FINISHES" value="finishes"> </p-checkbox>
+        </div>
+        <div class="col-lg-6">
+            <p-checkbox name="type" [(ngModel)]="selectedFileType" label="RISK ASSESMENT" value="risk"> </p-checkbox>
+        </div>
+        <div class="col-lg-6">
+            <p-checkbox name="type" [(ngModel)]="selectedFileType" label="Other" value="other"> </p-checkbox>
+        </div>
+
+    </div>
+    <br>
+    <div class="ui-g" *ngFor="let email of emailList ; let i = index; trackBy: trackByFn" style="padding: 0.5em">
+        <div class="col-lg-8">
+            <input class="form-control" type="text" name="elist" [(ngModel)]="emailList[i]">
+        </div>
+        <div class="col-lg-4">
+            <a *ngIf="i==0" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill" href="#"
+                ng-reflect-href="#" (click)="addemail()">
+                <i class="la la-plus"></i>
+            </a>
+            <a *ngIf="i!=0" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill" href="#"
+                ng-reflect-href="#" (click)="removeemail(i)">
+                <i class="la la-remove"></i>
+            </a>
+        </div>
+    </div>
+    <br>
+
+    <div class="col-lg-12">
+        <p-editor [(ngModel)]="emailBody" [style]="{'height':'100px'}"></p-editor>
+    </div>
+
+    <span style="color: rgb(146, 31, 31)" [hidden]="emailList.length > 0">Mail Send Succesfully!!</span>
+    <p-footer>
+        <button type="button" pButton icon="fa-check" (click)="sendEmail()" label="Send"></button>
+        <button type="button" pButton icon="fa-close" (click)="emailModal=false" label="Cancel"></button>
+    </p-footer>
+</p-dialog>

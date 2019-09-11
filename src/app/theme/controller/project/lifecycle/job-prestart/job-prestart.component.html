@@ -1,0 +1,167 @@
+<!-- <div class="col-xl-12" [hidden]="!step2_jobprestart"> -->
+    <div class="col-xl-12">
+
+    <form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" name="project_form">
+        <div class="m-portlet__body">
+            <div class="form-group m-form__group row">
+
+                <div class="form-group m-form__group col-lg-10">
+                    <label>
+                        SWMS
+                    </label>
+
+                    <!-- customUpload="true" (uploadHandler)="myUploader($event)" -->
+                    <p-fileUpload name="swms" (onUpload)="this.fileOperationService.onUpload($event,'swms')" (onSelect)="this.fileOperationService.onFileSelect($event)" multiple="multiple" url="{{this.baseUrl}}api/project/upload/{{this.projectService.selectedProject.quoteId}}"
+                        accept="application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,application/vnd.ms-powerpoint,application/msword,image/*">
+                        <ng-template pTemplate="content">
+                            <ul *ngIf="this.fileOperationService.uploadedFiles.swms.length">
+                                <li *ngFor="let file of this.fileOperationService.uploadedFiles.swms" style="padding: 0.4em;">
+                                    <a href="#" (click)="this.fileOperationService.viewFile(file)">{{file.name}}</a> &nbsp;&nbsp;&nbsp;
+                                    <button icon="fa-close" pbutton="" type="button" (click)="this.fileOperationService.removeFile(file)" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only">
+                                        <span class="ui-button-icon-left ui-clickable fa fa-fw fa-close"></span>
+                                        <span class="ui-button-text ui-clickable">ui-btn</span>
+                                    </button>
+                                </li>
+
+                            </ul>
+                        </ng-template>
+                    </p-fileUpload>
+                </div>
+                <div class="form-group m-form__group col-lg-2">
+                    <a class="btn btn-outline-warning m-btn m-btn--icon m-btn--outline-2x pull-right" [routerLink]="['/project/projectmail']">
+                        <span>
+                            <i class="la la-envelope"></i>
+                            <span>
+                                Share
+                            </span>
+                        </span>
+                    </a>
+                </div>
+                <div class="form-group m-form__group col-lg-10">
+                    <label>
+                        SDS
+                    </label>
+
+                    <p-fileUpload name="sds" (onUpload)="this.fileOperationService.onUpload($event,'sds')" multiple="multiple" url="{{this.baseUrl}}api/project/upload/{{this.projectService.selectedProject.quoteId}}"
+                        accept="application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,application/vnd.ms-powerpoint,application/msword,image/*">
+                        <ng-template pTemplate="content">
+                            <ul *ngIf="this.fileOperationService.uploadedFiles.sds.length">
+                                <li *ngFor="let file of this.fileOperationService.uploadedFiles.sds" style="padding: 0.4em;">
+                                    <a href="#" (click)="this.fileOperationService.viewFile(file)">{{file.name}}</a> &nbsp;&nbsp;&nbsp;
+                                    <button icon="fa-close" pbutton="" type="button" (click)="this.fileOperationService.removeFile(file)" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only">
+                                        <span class="ui-button-icon-left ui-clickable fa fa-fw fa-close"></span>
+                                        <span class="ui-button-text ui-clickable">ui-btn</span>
+                                    </button>
+                                </li>
+                            </ul>
+                        </ng-template>
+                    </p-fileUpload>
+                </div>
+                <div class="form-group m-form__group col-lg-10">
+                    <label>
+                        DRAWING
+                    </label>
+
+                    <p-fileUpload name="drawing" (onUpload)="this.fileOperationService.onUpload($event, 'drawing')" multiple="multiple" url="{{this.baseUrl}}api/project/upload/{{this.projectService.selectedProject.quoteId}}"
+                        accept="application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,application/vnd.ms-powerpoint,application/msword,image/*">
+                        <ng-template pTemplate="content">
+                            <ul *ngIf="this.fileOperationService.uploadedFiles.drawing.length">
+                                <li *ngFor="let file of this.fileOperationService.uploadedFiles.drawing" style="padding: 0.4em;">
+                                    <a href="#" (click)="this.fileOperationService.viewFile(file)">{{file.name}}</a> &nbsp;&nbsp;&nbsp;
+                                    <button icon="fa-close" pbutton="" type="button" (click)="this.fileOperationService.removeFile(file)" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only">
+                                        <span class="ui-button-icon-left ui-clickable fa fa-fw fa-close"></span>
+                                        <span class="ui-button-text ui-clickable">ui-btn</span>
+                                    </button>
+                                </li>
+                            </ul>
+                        </ng-template>
+                    </p-fileUpload>
+                </div>
+                <div class="form-group m-form__group col-lg-10">
+                    <label>
+                        FINISHES
+                    </label>
+
+                    <p-fileUpload name="finishes" (onUpload)="this.fileOperationService.onUpload($event, 'finishes')" multiple="multiple" url="{{this.baseUrl}}api/project/upload/{{this.projectService.selectedProject.quoteId}}"
+                        accept="application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,application/vnd.ms-powerpoint,application/msword,image/*">
+                        <ng-template pTemplate="content">
+                            <ul *ngIf="this.fileOperationService.uploadedFiles.finishes.length">
+                                <li *ngFor="let file of this.fileOperationService.uploadedFiles.finishes" style="padding: 0.4em;">
+                                    <a href="#" (click)="this.fileOperationService.viewFile(file)">{{file.name}}</a> &nbsp;&nbsp;&nbsp;
+                                    <button icon="fa-close" pbutton="" type="button" (click)="this.fileOperationService.removeFile(file)" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only">
+                                        <span class="ui-button-icon-left ui-clickable fa fa-fw fa-close"></span>
+                                        <span class="ui-button-text ui-clickable">ui-btn</span>
+                                    </button>
+                            </ul>
+                        </ng-template>
+                    </p-fileUpload>
+                </div>
+                <div class="form-group m-form__group col-lg-10">
+                    <label>
+                        RISK ASSESMENT
+                    </label>
+
+                    <p-fileUpload name="risk" (onUpload)="this.fileOperationService.onUpload($event, 'risk')" multiple="multiple" url="{{this.baseUrl}}api/project/upload/{{this.projectService.selectedProject.quoteId}}"
+                        accept="application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,application/vnd.ms-powerpoint,application/msword,image/*">
+                        <ng-template pTemplate="content">
+                            <ul *ngIf="this.fileOperationService.uploadedFiles.risk.length">
+                                <li *ngFor="let file of this.fileOperationService.uploadedFiles.risk" style="padding: 0.4em;">
+                                    <a href="#" (click)="this.fileOperationService.viewFile(file)">{{file.name}}</a> &nbsp;&nbsp;&nbsp;
+                                    <button icon="fa-close" pbutton="" type="button" (click)="this.fileOperationService.removeFile(file)" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only">
+                                        <span class="ui-button-icon-left ui-clickable fa fa-fw fa-close"></span>
+                                        <span class="ui-button-text ui-clickable">ui-btn</span>
+                                    </button>
+                                </li>
+                            </ul>
+                        </ng-template>
+                    </p-fileUpload>
+                </div>
+                <div class="form-group m-form__group col-lg-10">
+                    <label>
+                        Other
+                    </label>
+                    <p-fileUpload name="other" (onUpload)="this.fileOperationService.onUpload($event, 'other')" multiple="multiple" url="{{this.baseUrl}}api/project/upload/{{this.projectService.selectedProject.quoteId}}"
+                        accept="application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,application/vnd.ms-powerpoint,application/msword,image/*">
+                        <ng-template pTemplate="content">
+                            <ul *ngIf="this.fileOperationService.uploadedFiles.other.length">
+                                <li *ngFor="let file of this.fileOperationService.uploadedFiles.other" style="padding: 0.4em;">
+                                    <a href="#" (click)="this.fileOperationService.viewFile(file)">{{file.name}}</a> &nbsp;&nbsp;&nbsp;
+                                    <button icon="fa-close" pbutton="" type="button" (click)="this.fileOperationService.removeFile(file)" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only">
+                                        <span class="ui-button-icon-left ui-clickable fa fa-fw fa-close"></span>
+                                        <span class="ui-button-text ui-clickable">ui-btn</span>
+                                    </button>
+                                </li>
+                            </ul>
+                        </ng-template>
+                    </p-fileUpload>
+                </div>
+                <div class="m-portlet__foot m-portlet__foot--fit col-lg-12">
+                    <div class="m-form__actions">
+
+                        <a class="btn btn-danger m-btn m-btn--custom m-btn--icon" href="#" (click)="this.projectService.cancel()">
+                            <!-- <a class="btn btn-danger m-btn m-btn--custom m-btn--icon" href="#" > -->
+                            <span>
+                                <span>
+                                    Cancel
+                                </span>
+
+                            </span>
+                        </a>
+                        <!-- <a class="btn btn-warning m-btn m-btn--custom m-btn--icon pull-right" href="#" (click)="next(2)"> -->
+                            <a class="btn btn-warning m-btn m-btn--custom m-btn--icon pull-right" href="#" (click)="this.projectService.redirectTo('budget', 2)">
+
+                            <span>
+                                <span>
+                                    Save &amp; Continue
+                                </span>
+                                &nbsp;&nbsp;
+                                <i class="la la-arrow-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+  </div>

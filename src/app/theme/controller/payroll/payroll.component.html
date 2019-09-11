@@ -1,0 +1,226 @@
+<div class="m-subheader" appunwraptag="">
+  <div class="d-flex align-items-center">
+    <div class="mr-auto">
+      <h3 class="m-subheader__title">
+        Payroll
+      </h3>
+    </div>
+
+  </div>
+</div>
+
+<div class="m-content">
+  <div class="row">
+    <div class="m-portlet">
+      <div class="col-xl-12">
+        <br>
+        <br>
+        <!-- <pre>{{ProjectList|json}}</pre> -->
+        <div class="m-grid__item m-grid__item--fluid m-wrapper payroll">
+          <div *ngIf="!detailView">
+            <p-table [value]="ProjectList" selectionMode="single" [(selection)]="selectedProject" dataKey="quoteId">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>Sr.No.</th>
+                  <th>Project Name</th>
+                  <th>Location</th>
+                  <th>Total Employee</th>
+                  <th>Action</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-project let-i="rowIndex">
+                <tr>
+                  <td>{{i+1}}</td>
+                  <td>{{project.name}}</td>
+                  <td>
+                    <span *ngFor="let item of project.locations;let i=index;">
+                      {{item.location}}
+                      <span *ngIf="project.locations.length-1 != i">,</span>
+                    </span>
+                  </td>
+                  <td>
+                    <span [innerHtml]="getEmployees(project.locations)">
+
+                    </span>
+                  </td>
+                  <td>
+                    <a href="" (click)="onRowclick(project)">View</a>
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+          <div *ngIf="detailView">
+            <p-panel header="PAYG" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
+              <p-table [value]="EmployeePayroll.PayG_Employees">
+
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th>Employee Name</th>
+                    <th>Total Hour</th>
+                    <th>Taxable Earning</th>
+                    <th>Tax</th>
+                    <th>Super</th>
+                    <th>No. of days Travel</th>
+                    <th>Travel Allowance</th>
+                    <th>Total Cost to company</th>
+                    <th>Leaves</th>
+                  </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-payg let-i="rowIndex">
+                  <tr>
+                    <td>{{payg.employeeName}}</td>
+                    <td>{{payg.totalHrs}}</td>
+                    <td>{{payg.totalHrs * 1000}}</td>
+                    <td>
+                      <input class="widthinput" type="number" [(ngModel)]="payg.tax" />
+                    </td>
+                    <td>
+                      <input class="widthinput" type="number" [(ngModel)]="payg.super" />
+                    </td>
+                    <td>
+                      <input class="widthinput" type="number" [(ngModel)]="payg.travelDays" />
+
+                    </td>
+                    <td>
+                      <input type="number" style="width: 51%;" change)="payg.travelAllowance = (+allowance.value * 15.75)" #allowance /> {{payg.travelAllowance | number}}
+                    </td>
+                    <td>{{payg.travelAllowance * 15.75 | number}}</td>
+                    <td></td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </p-panel>
+
+            <p-panel header="ABN" [collapsed]="true" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
+              <p-table [value]="EmployeePayroll.ABN_Employees">
+
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th>Employee Name</th>
+                    <th>Invoice Number</th>
+                    <th>Location Code</th>
+                    <th>Invoice Date</th>
+                    <th>Invoice Amount</th>
+                    <th>Total Hours</th>
+                    <th>Taxable Earning</th>
+                    <th>Super</th>
+                    <th>Total Cost to Company</th>
+                    <th>Note</th>
+                  </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-abn let-rowIndex="rowIndex">
+                  <tr>
+                    <td>{{abn.employeeName}}</td>
+                    <td>
+                      <input class="widthinput" type="number" [(ngModel)]="abn.invoiceNumber" />
+                    </td>
+                    <td>
+                      <input class="widthinput" style="width:100%" type="date" [(ngModel)]="abn.invoiceDate" />
+                    </td>
+                    <td>
+                      <input class="widthinput" type="number" [(ngModel)]="abn.invoiceAmount" />
+                    </td>
+
+                    <td>
+                      {{abn.totalHrs}}
+                    </td>
+                    <td>
+                      <input class="widthinput" type="number" (change)="abn.super = 9.5/100 * abn.taxableEarning" [value]="abn.rate * abn.totalHrs"
+                        [(ngModel)]="abn.taxableEarning" />
+                    </td>
+                    <td>
+                      <input class="widthinput" type="number" (change)="abn.totalCosttoCompany = (abn.rate * abn.totalHrs) + abn.super" [(ngModel)]="abn.super"
+                      />
+                    </td>
+                    <td>
+                      {{abn.taxableEarning * abn.super}}
+                    </td>
+                    <td>
+                      <a href="#" (click)="createNote($event,'ABN_Employees',rowIndex)">
+                        <b *ngIf="abn.note==''">Create a Note</b>
+                      </a> {{abn.note}} </td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </p-panel>
+
+            <p-panel header="ACN" [collapsed]="true" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
+              <p-table [value]="EmployeePayroll.ACN_Employees">
+
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th>Employee Name</th>
+                    <th>Location Code</th>
+                    <th>Contract Value</th>
+                    <th>Claim By Contractor</th>
+                    <th>Approved Amt</th>
+                    <th>Payable Amt</th>
+                    <th>Outstanding Value</th>
+                    <th>Note</th>
+                  </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-acn let-rowIndex="rowIndex">
+                  <tr>
+                    <td>
+                      {{acn.employeeName}}
+                    </td>
+                    <td>
+                        <select class="form-control form-control-sm m-input" id="blocationcode" ><option value=""></option></select>
+                      <!-- <select class="form-control form-control-sm m-input" id="blocationcode" [ngModelOptions]="{standalone: true}" (change)="onChange('blocationcode',bi)"
+                          [(ngModel)]="budget.locationCode">
+                          <option value=""></option>
+                          <option *ngFor="let loc of this.projectService.selectedProject.locations; let i=index;" [value]="loc.locationCode">{{loc.locationCode}}</option>
+                      </select> -->
+                  </td>
+
+                    <td>
+                      <input class="widthinput" type="number" [(ngModel)]="acn.contractValue" />
+                    </td>
+                    <td>
+                      <input class="widthinput" type="number" [(ngModel)]="acn.claimByContractor" />
+                    </td>
+                    <td>
+                      <input class="widthinput" type="number" (blur)="acn.payableAmount= acn.approvedAmount" (change)="acn.outstandingContractValue = acn.contractValue - acn.approvedAmount" [(ngModel)]="acn.approvedAmount" />
+                    </td>
+                    <td>
+                      <input class="widthinput" type="number" [(ngModel)]="acn.payableAmount" />
+                    </td>
+                    <td>
+                        {{acn.outstandingContractValue}}
+                    </td>
+                    <td>
+                      <a href="#" (click)="createNote($event,'ACN_Employees',rowIndex)">
+                        <b *ngIf="acn.note==''">Create a Note</b>
+                      </a> {{acn.note}}
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </p-panel>
+
+            <a class="btn btn-danger m-btn m-btn--custom m-btn--icon " href="#" (click)="cancel()">
+              <span>
+                <span>
+                  Cancel
+                </span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-dialog header="Notes" *ngIf="displayNote" [(visible)]="displayNote" [modal]="true" [responsive]="true" [width]="350" [minWidth]="200">
+  <textarea [(ngModel)]="EmployeePayroll[empType][currentIndex].note"></textarea>
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" (click)="displayNote=false" label="Yes"></button>
+
+  </p-footer>
+
+</p-dialog>

@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+.ui-steps .ui-steps-number {
+    display: none;
+}
+.ui-steps-number {
+  display: none;
+}
+
+@media (max-width: 40em) {
+  .ui-steps .ui-steps-item .ui-steps-title {
+      display: block;
+  }
+
+  .ui-steps-item .ui-steps-title {
+    display: block;
+}
+}
+
+

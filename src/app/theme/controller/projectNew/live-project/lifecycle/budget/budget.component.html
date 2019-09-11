@@ -1,0 +1,224 @@
+<!-- <div class="col-xl-12" [hidden]="!step3_budget"> -->
+<div class="col-xl-12">
+  <form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" name="project_form">
+    <div class="m-portlet__body">
+      <div class="m-section">
+
+        <div class="m-section__content">
+          <strong>Budget</strong>
+          <a class="pull-right btn btn-danger m-btn m-btn--icon btn-lg m-btn--icon-only m-btn--pill" href="#" (click)="addBudget()"
+            style="margin-bottom: 2%;">
+            <i class="la la-plus"></i>
+          </a>
+          <div class="table-responsive">
+            <table class="table m-table  m-table--head-bg-success">
+              <thead>
+                <tr>
+
+                  <th>
+                    Location Code
+                  </th>
+                  <th>
+                    Location
+                  </th>
+                  <th>
+                    SQM/HR
+                  </th>
+                  <th>
+                    Rate $
+                  </th>
+                  <th>
+                    Material $
+                  </th>
+                  <th>
+                    Price $
+                  </th>
+                  <!-- <th>
+                                      Percentage %
+                                  </th>
+                                  <th>
+                                      Total Outlay
+                                  </th>
+                                  <th>
+                                      Expected Profit
+                                  </th> -->
+                  <th>
+                    Total to Budget for Expenditure $
+                  </th>
+                  <th>
+                    Amount available for Project expenses
+                  </th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let budget of this.projectService.selectedProject.projectBudget;let bi=index; trackBy: trackByFn">
+                  <td>
+                    <select class="form-control form-control-sm m-input" id="blocationcode" [ngModelOptions]="{standalone: true}"
+                      (change)="onChange('blocationcode',bi)" [(ngModel)]="budget.locationCode">
+                      <option value=""></option>
+                      <option *ngFor="let loc of this.projectService.selectedProject.locations; let i=index;" [value]="loc.locationCode">{{loc.locationCode}}</option>
+                    </select>
+                  </td>
+                  <td>
+                    <b> {{budget.location}}</b>
+                  </td>
+                  <td>
+                    <input class="form-control form-control-sm m-input" type="number" (change)="calculateBudget(bi)"
+                      [ngModelOptions]="{standalone: true}" [(ngModel)]="budget.sqmperhr">
+                  </td>
+                  <td>
+                    <input class="form-control form-control-sm m-input" type="number" (change)="calculateBudget(bi)"
+                      [ngModelOptions]="{standalone: true}" [(ngModel)]="budget.rate">
+                  </td>
+                  <td>
+                    <input class="form-control form-control-sm m-input" type="number" (change)="calculateBudget(bi)"
+                      [ngModelOptions]="{standalone: true}" [(ngModel)]="budget.materialRate">
+                  </td>
+
+                  <td>
+                    <b>{{budget.totalPrice}}</b>
+                  </td>
+                  <td>
+                    <b>{{budget.totalBudget}}</b>
+                  </td>
+                  <td>
+                    <b>{{budget.totalBudget}}</b>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="m-section__content">
+          <div class="col-xl-9">
+            <strong>Actual (Project Level)</strong>
+            <br>
+            <br>
+
+            <div class="table-responsive">
+              <table class="table m-table  m-table--head-bg-success table-sm">
+                <thead>
+                  <tr>
+
+                    <th>
+                      Price
+                    </th>
+                    <th>
+                      Cost To Company (CTC)
+                    </th>
+
+                    <th>
+                      Net Profit
+                    </th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <!-- {{ this.actualProjectLevel.projectPrice }} -->
+                    </td>
+                    <td>
+                      <!-- {{ this.actualProjectLevel.projectCTC }} -->
+                    </td>
+                    <td>
+                      <!-- {{ this.actualProjectLevel.projectNetProfit }} -->
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+
+        </div>
+
+        <div class="m-section__content">
+          <div class="col-xl-9">
+            <strong>Actual (Location Level)</strong>
+            <br>
+            <br>
+
+            <div class="table-responsive">
+              <table class="table m-table  m-table--head-bg-success table-sm">
+                <thead>
+                  <tr>
+
+                    <th>
+                      Code
+                    </th>
+                    <th>
+                      Location
+                    </th>
+                    <th>
+                      Price of the Project
+                    </th>
+                    <th>
+                      Cost to Company
+                    </th>
+                    <th>
+                      Net Profit
+                    </th>
+
+                  </tr>
+                </thead>
+                <tbody *ngIf="this.projectService.selectedQuote">
+                  <tr *ngFor="let c of this.projectService.selectedQuote.cost">
+                    <td>
+                      <input class="form-control m-input" type="text">
+                    </td>
+                    <td>
+                      <input class="form-control m-input" type="text">
+                    </td>
+                    <td>
+                      <input class="form-control m-input" [ngModel]="c.cost" type="text" [ngModelOptions]="{standalone: true}">
+                    </td>
+                    <td>
+                      <input class="form-control m-input" type="text">
+                    </td>
+                    <td>
+                      <input class="form-control m-input" type="text">
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="m-portlet__foot m-portlet__foot--fit col-lg-12">
+        <div class="m-form__actions">
+
+          <a class="btn btn-danger m-btn m-btn--custom m-btn--icon" href="#" (click)="this.projectService.cancel()">
+            <!-- <a class="btn btn-danger m-btn m-btn--custom m-btn--icon" href="#"> -->
+
+            <span>
+              <span>
+                Cancel
+              </span>
+
+            </span>
+          </a>
+          <!-- <a class="btn btn-warning m-btn m-btn--custom m-btn--icon pull-right" href="#" (click)="next(3)"> -->
+          <a class="btn btn-warning m-btn m-btn--custom m-btn--icon pull-right" href="#" (click)="this.projectService.redirectTo('variation', 3)">
+            <span>
+              <span>
+                Save &amp; Continue
+              </span>
+              &nbsp;&nbsp;
+              <i class="la la-arrow-right"></i>
+            </span>
+          </a>
+        </div>
+      </div>
+
+
+
+    </div>
+  </form>
+</div>

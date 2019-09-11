@@ -1,0 +1,167 @@
+<!-- <div class="col-xl-12 variationstep" [hidden]="!step4_variations"> -->
+    <div class="col-xl-12 variationstep">
+
+    <div class="clearfix col-xl-12">
+        <a class="pull-right btn btn-warning m-btn m-btn--icon btn-lg m-btn--icon-only m-btn--pill" href="#" (click)="addVariation()"
+            style="margin-bottom: 2%;">
+            <i class="la la-plus"></i>
+        </a>
+        <b class="pull-right" style="margin: 10px">Add Variations</b>
+    </div>
+    <div class="clearfix col-xl-12">
+        <form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed">
+            <p-fieldset *ngFor="let variationItem of this.projectService.selectedProject.variation;let i=index;trackBy: trackByFn" [toggleable]="true" [collapsed]="variationItem.collaps"
+                (onBeforeToggle)="variationToggle(variationItem.id,i)">
+                <p-header>Variation {{i+1}}
+                    <a class="btn btn-outline-danger pull-right m-btn m-btn--icon btn-sm m-btn--icon-only m-btn--outline-2x m-btn--pill" href="#"
+                        ng-reflect-href="#" (click)="removeVariation(i)">
+                        <i class="la la-remove"></i>
+                    </a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a class="btn btn-success pull-right m-btn m-btn--icon btn-sm m-btn--icon-only m-btn--pill" href="#" ng-reflect-href="#"
+                        (click)="saveVariation()">
+                        <i class="la la-check"></i>
+                    </a>
+
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a class="btn btn-warning pull-right m-btn m-btn--icon btn-sm m-btn--icon-only m-btn--pill" href="#" ng-reflect-href="#"
+                        (click)="editVariation()">
+                        <i class="la la-pencil"></i>
+                    </a>
+                </p-header>
+                <div class="m-portlet__body">
+                    <div class="form-group m-form__group row">
+                        <label class="col-lg-2 col-form-label">
+                            Defect Id:
+                        </label>
+                        <div class="col-lg-3" style="padding: 1%">
+                            <strong>{{this.projectService.selectedProject.variation[i].id}}</strong>
+                        </div>
+                        <label class="col-lg-2 col-form-label">
+                            Defect Date:
+                        </label>
+                        <div class="col-lg-3" style="padding: 1%">
+                            <strong [innerHtml]="this.projectService.selectedProject.variation[i].date | date : 'dd/MM/yyyy'"></strong>
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+
+                        <label class="col-lg-2 col-form-label">
+                            Associate Cost:
+                        </label>
+                        <div class="col-lg-3">
+                            <input type="text" [ngModelOptions]="{standalone: true}" [ngModel]="this.projectService.selectedProject.variation[i].estimate | currency" (ngModelChange)="this.projectService.selectedProject.variation[i].estimate = $event"
+                                class="form-control m-input">
+
+                            <span class="m-form__help">
+                                Estimation to complete defect
+                            </span>
+                        </div>
+                        <label class="col-lg-2 col-form-label">
+                            Employee Name:
+                        </label>
+                        <div class="col-lg-3">
+                            <input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.projectService.selectedProject.variation[i].contractorName" class="form-control m-input">
+
+                        </div>
+                    </div>
+
+                    <div class="m-form__group form-group row">
+                        <label class="col-lg-2 col-form-label">
+                            Approval:
+                        </label>
+                        <div class="col-lg-3">
+                            <div class="m-radio-inline">
+                                <label class="m-radio">
+
+                                    <input type="radio" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.projectService.selectedProject.variation[i].approval" name="approval_{{i}}"
+                                        [value]="true"> Yes
+                                    <span></span>
+                                </label>
+                                <label class="m-radio">
+                                    <input type="radio" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.projectService.selectedProject.variation[i].approval" name="approval_{{i}}"
+                                        [value]="false"> No
+                                    <span></span>
+                                </label>
+                            </div>
+                        </div>
+                        <label class="col-lg-2 col-form-label">
+                            Approval Name:
+                        </label>
+                        <div class="col-lg-3">
+                            <input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.projectService.selectedProject.variation[i].approvalName" class="form-control m-input">
+                        </div>
+                    </div>
+
+                    <div class="form-group m-form__group row">
+
+                        <label class="col-lg-2 col-form-label">
+                            Description:
+                        </label>
+                        <div class="col-lg-10">
+                            <textarea name="desc" rows="5" cols="70" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.projectService.selectedProject.variation[i].description"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                        <label class="col-lg-2 col-form-label">
+                            Defect Snaps:
+                        </label>
+                        <div class="col-lg-6">
+                            <div class="custom-file">
+                                <p-fileUpload name="variationfile" (onUpload)="onvariationUpload($event,variationItem.id,i)" url="{{baseUl}}api/project/variationupload/{{this.projectService.selectedProject.quoteId}}/{{variationItem.id}}"
+                                    multiple="multiple" accept="image/*">
+                                    <ng-template pTemplate="content">
+                                        <ul *ngIf="this.projectService.selectedProject.variation[i].variationFiles && this.projectService.selectedProject.variation[i].variationFiles.length">
+                                            <li *ngFor="let file of this.projectService.selectedProject.variation[i].variationFiles" style="padding: 0.4em;">
+                                                <a href="#" (click)="openFile(file.path)">{{file.name}}</a> &nbsp;&nbsp;&nbsp;
+                                                <button icon="fa-close" pbutton="" type="button" (click)="removeVariationFile(file,variationItem.id,i)" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only">
+                                                    <span class="ui-button-icon-left ui-clickable fa fa-fw fa-close"></span>
+                                                    <span class="ui-button-text ui-clickable">ui-btn</span>
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </ng-template>
+                                </p-fileUpload>
+                            </div>
+                            <span class="m-form__help">
+                                Upload Site images
+                            </span>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label>Location Code:</label>
+                            <select class="form-control m-input" id="location" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.projectService.selectedProject.variation[i].location">
+                                <option *ngFor="let loc of this.projectService.selectedProject.locations; let i=index;" [value]="loc.locationCode" [selected]="i==0">{{loc.locationCode}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </p-fieldset>
+            <div class="m-portlet__foot m-portlet__foot--fit col-lg-12">
+                <div class="m-form__actions">
+
+                    <a class="btn btn-danger m-btn m-btn--custom m-btn--icon" href="#" (click)="this.projectService.cancel()">
+                        <!-- <a class="btn btn-danger m-btn m-btn--custom m-btn--icon" href="#"> -->
+                        <span>
+                            <span>
+                                Cancel
+                            </span>
+
+                        </span>
+                    </a>
+                    <!-- <a class="btn btn-warning m-btn m-btn--custom m-btn--icon pull-right" href="#" (click)="next(4)"> -->
+                        <a class="btn btn-warning m-btn m-btn--custom m-btn--icon pull-right" href="#" (click)="this.projectService.redirectTo('material-order', 4)">
+
+                        <span>
+                            <span>
+                                Save &amp; Continue
+                            </span>
+                            &nbsp;&nbsp;
+                            <i class="la la-arrow-right"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

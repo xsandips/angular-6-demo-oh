@@ -1,0 +1,32 @@
+.width25{
+    width: 25%;
+}
+.ql-editor{
+    background: white;
+}
+.Success{
+    background-color: #34bfa3;
+    color: #fff;
+}
+.Reject{
+    background-color: #f4516c;
+    color: #fff;
+}
+.docstyle{
+    border: 3px solid;
+    margin: 1em 5em;
+    padding: 2em;
+}
+
+.margin-top20{
+    margin-top:20px
+}
+
+.margin-right10{
+    margin-right: 10px
+}
+
+
+.custom-attachment-icon-container {
+margin-left:5px
+}

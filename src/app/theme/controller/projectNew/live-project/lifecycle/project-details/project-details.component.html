@@ -1,0 +1,495 @@
+
+<!-- Project Details Start -->
+<div class="col-xl-12">
+<form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" name="project_form">
+    <div class="m-portlet__body">
+        <div class="form-group m-form__group row">
+
+            <div class="form-group m-form__group col-lg-3">
+                <label>
+                    Name
+                </label>
+
+                <input aria-describedby="no" class="form-control m-input" name="name" [disabled]="this.projectService.isComplete" [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="this.projectService.selectedProject.name" id="name" type="text">
+            </div>
+            <div class="form-group m-form__group col-lg-3">
+                <label>
+                    Quote Date
+                </label>
+
+                <input aria-describedby="no" class="form-control m-input" name="date" [disabled]="this.projectService.isComplete" [ngModelOptions]="{standalone: true}"
+                    [ngModel]="this.projectService.selectedProject.quote_date | date:'yyyy-MM-dd'" (ngModelChange)="this.projectService.selectedProject.quote_date = $event"
+                    id="name" type="date">
+            </div>
+            <div class="form-group m-form__group col-lg-2">
+                <label>
+                    Project Cost
+                </label>
+
+                <input aria-describedby="no" class="form-control m-input" name="cost" [disabled]="this.projectService.isComplete" [ngModelOptions]="{standalone: true}"
+                    [ngModel]="this.projectService.selectedProject.cost | currency" id="cost" type="text" readonly>
+            </div>
+            <div class="form-group m-form__group col-lg-2">
+                <label>
+                    %
+                </label>
+                <input aria-describedby="no" class="form-control m-input" name="cost" [disabled]="this.projectService.isComplete" [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="this.projectService.profitePercent" id="cost" type="number" max="99" min="1">
+            </div>
+            <div class="form-group m-form__group col-lg-2">
+                <label>
+                    Project Profit
+                </label>
+                <input aria-describedby="no" class="form-control m-input" name="name" [disabled]="this.projectService.isComplete" [ngModelOptions]="{standalone: true}"
+                    [ngModel]="this.projectService.selectedProject.cost * this.projectService.profitePercent / 100 | currency" (ngModelChange)="this.projectService.selectedProject.profite=$event"
+                    id="name" type="text" readonly>
+
+            </div>
+            <div class="form-group m-form__group col-lg-12">
+                <label>
+                    Scope
+                </label>
+
+                <p-editor [disabled]="this.projectService.isComplete" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.projectService.selectedProject.scopeDetail" [style]="{'height':'200px'}"></p-editor>
+            </div>
+
+            <div class="form-group m-form__group col-lg-12">
+                <b>
+                    Sight Address
+                </b>
+
+                <div class="col-lg-12 form-group m-form__group row">
+                    <div class="col-lg-6">
+                        <label>
+                            Address Line 1:
+                        </label>
+                        <div class="m-input-icon m-input-icon--right">
+                            <input class="form-control m-input" name="name" [disabled]="this.projectService.isComplete" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.projectService.selectedProject.address.address1"
+                                id="name" type="text">
+                            <span class="m-input-icon__icon m-input-icon__icon--right">
+                                <span>
+                                    <i class="la la-map-marker"></i>
+                                </span>
+                            </span>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-6">
+                        <label class="">
+                            Address Line 2
+                        </label>
+                        <div class="m-input-icon m-input-icon--right">
+                            <input class="form-control m-input" name="name" [disabled]="this.projectService.isComplete" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.projectService.selectedProject.address.address2"
+                                id="name" type="text">
+                            <span class="m-input-icon__icon m-input-icon__icon--right">
+                                <span>
+                                    <i class="la la-map-marker"></i>
+                                </span>
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-12 form-group m-form__group row">
+                    <div class="col-lg-6">
+                        <label>
+                            City:
+                        </label>
+                        <div class="m-input-icon m-input-icon--right">
+                            <input class="form-control m-input" name="name" [disabled]="this.projectService.isComplete" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.projectService.selectedProject.address.city"
+                                id="name" type="text">
+                            <span class="m-input-icon__icon m-input-icon__icon--right">
+                                <span>
+                                    <i class="la la-map-marker"></i>
+                                </span>
+                            </span>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-6">
+                        <label class="">
+                            State / Province / Region:
+                        </label>
+                        <div class="m-input-icon m-input-icon--right">
+                            <input class="form-control m-input" name="name" [disabled]="this.projectService.isComplete" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.projectService.selectedProject.address.state"
+                                id="name" type="text">
+                            <span class="m-input-icon__icon m-input-icon__icon--right">
+                                <span>
+                                    <i class="la la-map-marker"></i>
+                                </span>
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-12 form-group m-form__group row">
+                    <div class="col-lg-6">
+                        <label>
+                            Zip / Postal Code:
+                        </label>
+                        <div class="m-input-icon m-input-icon--right">
+                            <input class="form-control m-input" name="name" [disabled]="this.projectService.isComplete" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.projectService.selectedProject.address.zip"
+                                id="name" type="text">
+                            <span class="m-input-icon__icon m-input-icon__icon--right">
+                                <span>
+                                    <i class="la la-map-marker"></i>
+                                </span>
+                            </span>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-6">
+                        <label class="">
+                            Country:
+                        </label>
+                        <div class="m-input-icon m-input-icon--right">
+                            <input class="form-control m-input" name="name" [disabled]="this.projectService.isComplete" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.projectService.selectedProject.address.country"
+                                id="name" type="text">
+                            <span class="m-input-icon__icon m-input-icon__icon--right">
+                                <span>
+                                    <i class="la la-map-marker"></i>
+                                </span>
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="form-group m-form__group col-lg-12">
+
+                <div class="pull-right btn btn-warning m-btn m-btn--icon btn-lg m-btn--icon-only m-btn--pill" 
+                   href="#" (click)="addAddress()"
+                    style="margin-bottom: 2%;">
+                    <i class="la la-plus"></i>
+               </div>
+                <b class="pull-right" style="margin: 10px">Add Location</b>
+            </div>    
+
+
+                <div class="clearfix col-xl-12">
+                    <form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed">
+                        <p-fieldset *ngFor="let location of this.projectService.selectedProject.locations; let i = index; trackBy: trackByFn"
+                         [toggleable]="true" [collapsed]="location.collaps"                         
+                            (onBeforeToggle)="variationToggle(location.id,i)">
+                            <p-header>
+                               <span>Location: <strong>{{location.location}}</strong></span> 
+                               <span class="margin-left25per"> Location Code: <strong>{{location.locationCode}}</strong></span>
+
+                                <a class="btn btn-outline-danger pull-right m-btn m-btn--icon btn-sm m-btn--icon-only m-btn--outline-2x m-btn--pill" href="#"
+                                    ng-reflect-href="#" (click)="removeLocation(i)">
+                                    <i class="la la-remove"></i>
+                                </a>
+                               
+                                <!-- <a class="btn btn-success pull-right m-btn m-btn--icon btn-sm m-btn--icon-only m-btn--pill" href="#" ng-reflect-href="#"
+                                    (click)="saveVariation()">
+                                    <i class="la la-check"></i>
+                                </a>            
+                                
+                                <a class="btn btn-warning pull-right m-btn m-btn--icon btn-sm m-btn--icon-only m-btn--pill" href="#" ng-reflect-href="#"
+                                    (click)="editVariation()">
+                                    <i class="la la-pencil"></i>
+                                </a> -->
+
+                            </p-header>
+
+                            <table  style="width: 100%;">
+                                <tr>
+                                    <td>
+                                        <b> Location {{index}}</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col-lg-12 form-group m-form__group row">
+                                            <div class="col-lg-6">
+                                                <label>
+                                                    Location:
+                                                </label>
+                                                <div class="m-input-icon m-input-icon--right">
+                                                    <input class="form-control m-input" name="name" (blur)="onLocationChange($event.target.value,i)" [disabled]="this.projectService.isComplete"
+                                                        [ngModelOptions]="{standalone: true}" [(ngModel)]="this.projectService.selectedProject.locations[i].location"
+                                                        id="name" type="text">
+                                                    <span class="m-input-icon__icon m-input-icon__icon--right">
+                                                        <span>
+                                                            <i class="la la-map-marker"></i>
+                                                        </span>
+                                                    </span>
+                                                </div>
+            
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <label class="">
+                                                    Location Code:
+                                                </label>
+                                                <div class="m-input-icon m-input-icon--right">
+                                                    <input class="form-control m-input" name="name" disabled [ngModelOptions]="{standalone: true}" [ngModel]="this.projectService.selectedProject.locations[i].locationCode"
+                                                        id="name" type="text">
+                                                    <span class="m-input-icon__icon m-input-icon__icon--right">
+                                                        <span>
+                                                            <i class="la la-map-marker"></i>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col-lg-12 form-group m-form__group row">
+                                            <div class="col-lg-6">
+                                                <label>
+                                                    Address Line 1:
+                                                </label>
+                                                <div class="m-input-icon m-input-icon--right">
+                                                    <input class="form-control m-input" name="empname" [disabled]="this.projectService.isComplete" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.projectService.selectedProject.locations[i].address1"
+                                                        id="name" type="text">
+                                                    <span class="m-input-icon__icon m-input-icon__icon--right">
+                                                        <span>
+                                                            <i class="la la-map-marker"></i>
+                                                        </span>
+                                                    </span>
+                                                </div>
+            
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <label class="">
+                                                    Address Line 2
+                                                </label>
+                                                <div class="m-input-icon m-input-icon--right">
+                                                    <input class="form-control m-input" name="empname" [disabled]="this.projectService.isComplete" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.projectService.selectedProject.locations[i].address2"
+                                                        id="name" type="text">
+                                                    <span class="m-input-icon__icon m-input-icon__icon--right">
+                                                        <span>
+                                                            <i class="la la-map-marker"></i>
+                                                        </span>
+                                                    </span>
+                                                </div>
+            
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col-lg-12 form-group m-form__group row">
+                                            <div class="col-lg-6">
+                                                <label>
+                                                    City:
+                                                </label>
+                                                <div class="m-input-icon m-input-icon--right">
+                                                    <input class="form-control m-input" name="name" [disabled]="this.projectService.isComplete" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.projectService.selectedProject.locations[i].city"
+                                                        id="name" type="text">
+                                                    <span class="m-input-icon__icon m-input-icon__icon--right">
+                                                        <span>
+                                                            <i class="la la-map-marker"></i>
+                                                        </span>
+                                                    </span>
+                                                </div>
+            
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <label class="">
+                                                    State / Province / Region:
+                                                </label>
+                                                <div class="m-input-icon m-input-icon--right">
+                                                    <input class="form-control m-input" name="name" [disabled]="this.projectService.isComplete" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.projectService.selectedProject.locations[i].state"
+                                                        id="name" type="text">
+                                                    <span class="m-input-icon__icon m-input-icon__icon--right">
+                                                        <span>
+                                                            <i class="la la-map-marker"></i>
+                                                        </span>
+                                                    </span>
+                                                </div>
+            
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col-lg-12 form-group m-form__group row">
+                                            <div class="col-lg-6">
+                                                <label>
+                                                    Zip / Postal Code:
+                                                </label>
+                                                <div class="m-input-icon m-input-icon--right">
+                                                    <input class="form-control m-input" name="name" [disabled]="this.projectService.isComplete" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.projectService.selectedProject.locations[i].zip"
+                                                        id="name" type="text">
+                                                    <span class="m-input-icon__icon m-input-icon__icon--right">
+                                                        <span>
+                                                            <i class="la la-map-marker"></i>
+                                                        </span>
+                                                    </span>
+                                                </div>
+            
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <label class="">
+                                                    Country:
+                                                </label>
+                                                <div class="m-input-icon m-input-icon--right">
+                                                    <input class="form-control m-input" name="name" [disabled]="this.projectService.isComplete" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.projectService.selectedProject.locations[i].country"
+                                                        id="name" type="text">
+                                                    <span class="m-input-icon__icon m-input-icon__icon--right">
+                                                        <span>
+                                                            <i class="la la-map-marker"></i>
+                                                        </span>
+                                                    </span>
+                                                </div>
+            
+                                            </div>
+            
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>
+                                        <div class="col-lg-12 form-group m-form__group row">
+                                            <!-- <div class="col-lg-4">
+                                                <label>
+                                                    Employee Type
+                                                </label>
+            
+                                                <select name="employeeType" [ngModelOptions]="{standalone: true}" (change)="onChange('employeeType',i)" [(ngModel)]="this.projectService.selectedProject.locations[i].employeeType"
+                                                    class="form-control m-input" data-width="70px" data-selected="50">
+                                                    <option value=''>Select Employee Type</option>
+                                                    <option *ngFor="let emp of employeeTypeData" [value]="emp._id">{{emp.name}}</option>
+                                                </select>
+                                            </div> -->
+                                            <div class="col-lg-6">
+                                                <label>
+                                                    Start Date
+                                                </label>
+                                                <input aria-describedby="no" class="form-control m-input" name="pdate" [disabled]="this.projectService.isComplete" [ngModelOptions]="{standalone: true}"
+                                                    [ngModel]="this.projectService.selectedProject.locations[i].projectStartDate | date:'yyyy-MM-dd'"
+                                                    (ngModelChange)="this.projectService.selectedProject.locations[i].projectStartDate = $event"
+                                                    id="pname" type="date">
+            
+                                            </div>
+                                            <div class="col-lg-6">
+                                              <label>
+                                                  End Date
+                                              </label>
+                                              <input aria-describedby="no" class="form-control m-input" name="pdate" [disabled]="this.projectService.isComplete" [ngModelOptions]="{standalone: true}"
+                                                  [ngModel]="this.projectService.selectedProject.locations[i].projectEndDate | date:'yyyy-MM-dd'"
+                                                  (ngModelChange)="this.projectService.selectedProject.locations[i].projectEndDate = $event"
+                                                  id="pname" type="date">
+                                          </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-group m-form__group row emp">
+                                            <div class="col-lg-6">
+                                                <label>
+                                                    Project Manager
+                                                </label>
+                                                <br>
+                                                <!-- <p-multiSelect [options]="this.projectService.employeeList" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.projectService.selectedProject.locations[i].manager"></p-multiSelect> -->
+                                                <p-multiSelect [options]="locationEmployee" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.projectService.selectedProject.locations[i].manager"></p-multiSelect>
+            
+            
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <label>
+                                                    Employee
+                                                </label>
+                                                <br>
+                                                <button type="button" pButton icon="fa-check" [routerLink]="['/project/employee',i]" style="height:30px" label="Assign Employee"></button>
+                                                <button type="button" pButton icon="fa-check" (click)="showEmployee(i)" style="height:30px; margin-left: 60px;" label="View Employee"></button>
+            
+                                                </div>
+                                                <!-- <a href="#" [routerLink]="['/project/employee',i]">Select Employee</a> -->
+                                                <!-- <a href="#" (click)="showEmployee()">View Employee</a> -->
+            
+            
+                                                <!-- <p-listbox *ngIf="this.projectService.employeeListArray.length" [options]="this.projectService.employeeListArray[i]" [disabled]="true" [ngModelOptions]="{standalone: true}"
+                                                    [(ngModel)]="this.projectService.selectedProject.locations[i].employees"></p-listbox> -->
+                                            <!-- <div class="col-lg-6">
+                                                <br>
+                                                <p-listbox *ngIf="this.projectService.employeeListArray.length" [options]="this.projectService.employeeListArray" [disabled]="true" [ngModelOptions]="{standalone: true}"
+                                                    [(ngModel)]="this.projectService.employeeListArray">
+            
+                                                  </p-listbox>
+                                            </div> -->
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                           
+                        </p-fieldset>
+                       
+                    </form>
+                </div>
+            
+            <br>
+            <div class="m-portlet__foot m-portlet__foot--fit col-lg-12">
+                <div class="m-form__actions">
+                    <!-- <a class="btn btn-success m-btn m-btn--custom m-btn--icon" href="#" (click)="submit()">
+                        <span>
+                            <span>
+                                Submit
+                            </span>
+
+                        </span>
+                    </a> -->
+
+                    <a class="btn btn-danger m-btn m-btn--custom m-btn--icon " href="#" (click)="this.projectService.cancel()">
+                        <span>
+                            <span>
+                                Cancel
+                            </span>
+                        </span>
+                    </a>
+                    <a class="btn btn-warning m-btn m-btn--custom m-btn--icon pull-right" href="#" (click)="this.projectService.redirectTo('job-prestart', 1)">
+                        <span>
+                            <span>
+                                Save &amp; Continue
+                            </span>
+                            &nbsp;&nbsp;
+                            <i class="la la-arrow-right"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+</div>
+<!-- Project Details End -->
+
+<p-dialog header="Employee List" [(visible)]="empListModal" [modal]="true" [width]="700">
+    <div>
+        <!-- <pre>{{employees|json}}</pre> -->
+        <p-table #dt [value]="locationEmployee" >
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Name</th>
+                    <th>Projects</th>
+                    <!-- <th>Employee Type</th> -->
+                </tr>
+
+            </ng-template>
+            <ng-template pTemplate="body" let-employee>
+                <tr>
+                    <td>{{employee.label}} </td>
+                    <td>{{this.projectService.selectedProject.name}}
+                </tr>
+            </ng-template>
+        </p-table>
+
+    </div>
+    <p-footer>
+        <button type="button" pButton icon="fa-close" (click)="empListModal=false" label="Cancel"></button>
+    </p-footer>
+
+</p-dialog>
+

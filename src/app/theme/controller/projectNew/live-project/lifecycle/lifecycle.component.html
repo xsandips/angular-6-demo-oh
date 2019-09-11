@@ -1,0 +1,7 @@
+
+<div class="col-xl-12" style="padding: 1% 4% 0 4%;">
+    <p-steps class="ui-steps-customized" [model]="items"  [readonly]="false"></p-steps>
+</div>
+<br>
+<app-custom-alert #alert [message]="alertmessage" (onSubmit)="callSubmit()"></app-custom-alert>
+<router-outlet></router-outlet>

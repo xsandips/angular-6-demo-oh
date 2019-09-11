@@ -1,0 +1,278 @@
+<!-- border-bottom: 1px solid #e9ecef; -->
+<p-dialog [(visible)]="display" [showHeader]="false" [modal]="true" (onHide)="cancel()" [responsive]="true" [width]="1200"
+    [minWidth]="200" [minY]="70">
+    <div role="document" class="docstyle" #downloadForm>
+        <table style="width: 100%; margin-left: -1.7pt; border-collapse: collapse;" width="714">
+            <tbody>
+                <tr style="height: 17.25pt;">
+                    <td style="width: 169.3pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 17.25pt;" rowspan="6" width="226">
+                        <img src="../../../../../assets/img/docLogo.jpg" width="250" alt="">
+                    </td>
+                    <td style="width: 366.5pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 17.25pt;" width="489">
+                        <p style="margin-bottom: .0001pt; text-align: right; line-height: normal;">
+                            <span style="font-size: 12.0pt; font-family: 'Century Gothic','sans-serif'; color: #2bab2b;">QUOTATION </span>
+                        </p>
+                    </td>
+                </tr>
+                <tr style="height: 15.0pt;">
+                    <td style="width: 366.5pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 15.0pt;" width="489">
+                        <p style="margin-bottom: .0001pt; text-align: right; line-height: normal;">
+                            <span style="font-size: 8.0pt; font-family: 'Century Gothic','sans-serif'; color: gray;">Brocorp Pty Ltd T/A ACN: 091 801 357 ABN: 55 091 801 357 BSA:728682</span>
+                        </p>
+                    </td>
+                </tr>
+                <tr style="height: 15.0pt;">
+                    <td style="width: 366.5pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 15.0pt;" width="489">
+                        <p style="margin-bottom: .0001pt; text-align: right; line-height: normal;">
+                            <span style="font-size: 8.0pt; font-family: 'Century Gothic','sans-serif'; color: gray;">Unit 1/617 Seventeen Mile Rocks Road, Seventeen Mile Rocks, Brisbane QLD 4074</span>
+                        </p>
+                    </td>
+                </tr>
+                <tr style="height: 15.0pt;">
+                    <td style="width: 366.5pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 15.0pt;" width="489">
+                        <p style="margin-bottom: .0001pt; text-align: right; line-height: normal;">
+                            <span style="font-size: 8.0pt; font-family: 'Century Gothic','sans-serif'; color: gray;">Po Box 140, Mount Ommaney QLD 4074</span>
+                        </p>
+                    </td>
+                </tr>
+                <tr style="height: 15.0pt;">
+                    <td style="width: 366.5pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 15.0pt;" width="489">
+                        <p style="margin-bottom: .0001pt; text-align: right; line-height: normal;">
+                            <strong>
+                                <span style="font-size: 8.0pt; font-family: 'Century Gothic','sans-serif'; color: #2bab2b;">P:</span>
+                            </strong>
+                            <strong>
+                                <span style="font-size: 8.0pt; font-family: 'Century Gothic','sans-serif'; color: gray;">07 3376 8546 |</span>
+                            </strong>
+                            <strong>
+                                <span style="font-size: 8.0pt; font-family: 'Century Gothic','sans-serif'; color: #2bab2b;">F:</span>
+                            </strong>
+                            <strong>
+                                <span style="font-size: 8.0pt; font-family: 'Century Gothic','sans-serif'; color: gray;">07 3715 6234 |</span>
+                            </strong>
+                            <strong>
+                                <span style="font-size: 8.0pt; font-family: 'Century Gothic','sans-serif'; color: #2bab2b;">M:</span>
+                            </strong>
+                            <strong>
+                                <span style="font-size: 8.0pt; font-family: 'Century Gothic','sans-serif'; color: gray;">0409 744 597</span>
+                            </strong>
+                        </p>
+                    </td>
+                </tr>
+                <tr style="height: 15.0pt;">
+                    <td style="width: 366.5pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 15.0pt;" width="489">
+                        <p style="margin-bottom: .0001pt; text-align: right; line-height: normal;">
+                            <strong>
+                                <span style="font-size: 8.0pt; font-family: 'Century Gothic','sans-serif'; color: #2bab2b;">E:</span>
+                            </strong>
+                            <span style="font-size: 8.0pt; font-family: 'Century Gothic','sans-serif'; color: gray;">
+                                <strong>info@allpaintandcoatings.com</strong>
+                            </span>
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>&nbsp;</p>
+
+        <p>
+            <span style="font-family: 'Arial Narrow','sans-serif'; color: black;">{{quote.date| date:'dd/MM/yyyy'}}</span>
+        </p>
+        <p>
+            <span style="font-family: 'Arial Narrow','sans-serif'; color: black;">{{quote.tender}}</span>
+            <span style="font-family: 'Arial Narrow', sans-serif;">&nbsp;</span>
+        </p>
+        <p>
+            <span style="font-family: 'Arial Narrow','sans-serif'; color: black;">To whom it may concern</span>
+            <span style="font-family: 'Arial Narrow', sans-serif;">&nbsp;</span>
+        </p>
+        <p>
+            <span style="text-decoration: underline;">
+                <strong>
+                    <span style="font-family: 'Arial Narrow', sans-serif; color: black; text-decoration: underline;" [innerHtml]="quote.name"></span>
+
+                </strong>
+            </span>
+        </p>
+        <p>
+            <span style="font-family: 'Arial Narrow','sans-serif'; color: black;" [innerHtml]="quote.details"></span>
+        </p>
+        <p>
+            <span style="font-family: 'Arial Narrow','sans-serif'; color: black;">&nbsp;</span>
+        </p>
+        <div>
+            <p style="margin-bottom: 12.0pt; line-height: 17.0pt;" [innerHtml]="quote.quoteReason">
+            </p>
+        </div>
+        <div>
+            <p style="margin-bottom: 12.0pt; line-height: 17.0pt;" [innerHtml]="quote.scopeDetail">
+            </p>
+        </div>
+        <br />
+        <p style="margin-bottom: .0001pt; line-height: normal;">
+            <span style="font-family: 'Arial Narrow','sans-serif';">EXCLUSIONS:</span>
+            <span style="font-family: 'Arial Narrow','sans-serif';">&nbsp;</span>
+        </p>
+        <div>
+            <p style="margin-bottom: 12.0pt; line-height: 17.0pt;" [innerHtml]="quote.externalSubstrate">
+
+            </p>
+        </div>
+        <div>
+            <p style="margin-bottom: 12.0pt; line-height: 17.0pt;" [innerHtml]="quote.internalSubstrate">
+
+            </p>
+        </div>
+        <p style="margin-bottom: 12.0pt; line-height: 17.0pt;">
+            <strong>
+                <u>
+                    <span style="font-size: 10.0pt; font-family: 'Arial Narrow','sans-serif';">PRICE BREAKDOWN</span>
+                </u>
+            </strong>
+        </p>
+        <table style="width: 549.4pt; border-collapse: collapse;" width="733">
+            <tbody>
+                <tr style="height: 14.25pt;" *ngFor="let cost of quote.cost; let i=index">
+                    <td style="width: 277.4pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 14.25pt;" colspan="4" width="370">
+                        <p style="margin-bottom: .0001pt; line-height: normal;">
+                            <span style="font-size: 10.0pt; font-family: 'Arial Narrow','sans-serif'; color: black;">{{cost.heading}}</span>
+                        </p>
+                    </td>
+                    <td style="width: 33.9pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 14.25pt;" width="45">&nbsp;</td>
+                    <td style="width: 33.9pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 14.25pt;" width="45">&nbsp;</td>
+                    <td style="width: 57.55pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 14.25pt;" width="77">&nbsp;</td>
+                    <td style="width: 14.45pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 14.25pt;" width="19">&nbsp;</td>
+                    <td style="width: 14.45pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 14.25pt;" width="19">&nbsp;</td>
+                    <td style="width: 77.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 14.25pt;" colspan="2" width="103">
+                        <p style="margin-bottom: .0001pt; text-align: right; line-height: normal;">
+                            <span style="font-size: 10.0pt; font-family: 'Arial Narrow','sans-serif'; color: black;">{{cost.cost|currency}}</span>
+                        </p>
+                    </td>
+                    <td style="border: none; padding: 0cm 0cm 0cm 0cm;" colspan="2" width="54">
+                        <p>&nbsp;</p>
+                    </td>
+                </tr>
+                <tr style="height: 70px"></tr>
+                <tr style="height: 16.5pt;">
+                    <td style="width: 345.2pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" colspan="6" width="460">
+                        <p style="margin-bottom: .0001pt; line-height: normal;">
+                            <span style="font-size: 10.0pt; font-family: 'Arial Narrow','sans-serif'; color: black;">{{quote.pricebreakdownHeading}}
+                            </span>
+                        </p>
+                    </td>
+                    <td style="width: 57.55pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" width="77">&nbsp;</td>
+                    <td style="width: 66.8pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" colspan="3" width="89">&nbsp;</td>
+                    <td style="width: 68.15pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" colspan="2" width="91">&nbsp;</td>
+                    <td style="width: 11.7pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" width="16">&nbsp;</td>
+                </tr>
+                <tr style="height: 16.5pt;">
+                    <td style="width: 175.65pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" width="234">
+                        <p style="margin-bottom: .0001pt; line-height: normal;">
+                            <span style="font-size: 10.0pt; font-family: 'Arial Narrow','sans-serif'; color: black;">{{quote.pricebreakdownFooter}}</span>
+                        </p>
+                    </td>
+                    <td style="width: 33.95pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" width="45">&nbsp;</td>
+                    <td style="width: 33.9pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" width="45">&nbsp;</td>
+                    <td style="width: 33.9pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" width="45">&nbsp;</td>
+                    <td style="width: 33.9pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" width="45">&nbsp;</td>
+                    <td style="width: 33.9pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" width="45">&nbsp;</td>
+                    <td style="width: 57.55pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" width="77">&nbsp;</td>
+                    <td style="width: 14.45pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" width="19">&nbsp;</td>
+                    <td style="width: 14.45pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" width="19">&nbsp;</td>
+                    <td style="width: 77.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" colspan="2" width="103">
+                        <p style="margin-bottom: .0001pt; text-align: right; line-height: normal;">
+                            <span style="font-size: 10.0pt; font-family: 'Arial Narrow','sans-serif'; color: black;">{{quote.gstCost *10 |currency}}</span>
+                        </p>
+                    </td>
+                    <td style="border: none; padding: 0cm 0cm 0cm 0cm;" colspan="2" width="54">
+                        <p>&nbsp;</p>
+                    </td>
+                </tr>
+                <tr style="height: 16.5pt;">
+                    <td style="width: 175.65pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" width="234">
+                        <p style="margin-bottom: .0001pt; line-height: normal;">
+                            <span style="font-size: 10.0pt; font-family: 'Arial Narrow','sans-serif'; color: black;">GST</span>
+                        </p>
+                    </td>
+                    <td style="width: 33.95pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" width="45">&nbsp;</td>
+                    <td style="width: 33.9pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" width="45">&nbsp;</td>
+                    <td style="width: 33.9pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" width="45">&nbsp;</td>
+                    <td style="width: 33.9pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" width="45">&nbsp;</td>
+                    <td style="width: 33.9pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" width="45">&nbsp;</td>
+                    <td style="width: 57.55pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" width="77">&nbsp;</td>
+                    <td style="width: 14.45pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" width="19">&nbsp;</td>
+                    <td style="width: 14.45pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" width="19">&nbsp;</td>
+                    <td style="width: 77.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" colspan="2" width="103">
+                        <p style="margin-bottom: .0001pt; text-align: right; line-height: normal;">
+                            <span style="font-size: 10.0pt; font-family: 'Arial Narrow','sans-serif'; color: black;">{{quote.gstCost|currency}}</span>
+                        </p>
+                    </td>
+                    <td style="border: none; padding: 0cm 0cm 0cm 0cm;" colspan="2" width="54">
+                        <p>&nbsp;</p>
+                    </td>
+                </tr>
+
+                <tr style="height: 16.5pt;">
+                    <td style="width: 175.65pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" width="234">
+                        <p style="margin-bottom: .0001pt; line-height: normal;">
+                            <span style="font-size: 10.0pt; font-family: 'Arial Narrow','sans-serif'; color: black;">Total</span>
+                        </p>
+                    </td>
+                    <td style="width: 33.95pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" width="45">&nbsp;</td>
+                    <td style="width: 33.9pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" width="45">&nbsp;</td>
+                    <td style="width: 33.9pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" width="45">&nbsp;</td>
+                    <td style="width: 33.9pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" width="45">&nbsp;</td>
+                    <td style="width: 33.9pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" width="45">&nbsp;</td>
+                    <td style="width: 57.55pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" width="77">&nbsp;</td>
+                    <td style="width: 14.45pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" width="19">&nbsp;</td>
+                    <td style="width: 14.45pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" width="19">&nbsp;</td>
+                    <td style="width: 77.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" colspan="2" width="103">
+                        <p style="margin-bottom: .0001pt; text-align: right; line-height: normal;">
+                            <span style="font-size: 10.0pt; font-family: 'Arial Narrow','sans-serif'; color: black;">{{quote.totalCost|currency}}</span>
+                        </p>
+                    </td>
+                    <td style="border: none; padding: 0cm 0cm 0cm 0cm;" colspan="2" width="54">
+                        <p>&nbsp;</p>
+                    </td>
+                </tr>
+                <tr style="height: 16.5pt;">
+                    <td style="width: 508.65pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 16.5pt;" colspan="11" width="678">
+                        <p style="margin-bottom: .0001pt; line-height: normal;">
+                            <span style="font-size: 12.0pt; font-family: 'Times New Roman','serif';">_________________________________________________________________________________</span>
+                        </p>
+                    </td>
+                    <td style="border: none; padding: 0cm 0cm 0cm 0cm;" colspan="2" width="54">
+                        <p>&nbsp;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: none;" width="234">&nbsp;</td>
+                    <td style="border: none;" width="45">&nbsp;</td>
+                    <td style="border: none;" width="45">&nbsp;</td>
+                    <td style="border: none;" width="45">&nbsp;</td>
+                    <td style="border: none;" width="45">&nbsp;</td>
+                    <td style="border: none;" width="45">&nbsp;</td>
+                    <td style="border: none;" width="77">&nbsp;</td>
+                    <td style="border: none;" width="19">&nbsp;</td>
+                    <td style="border: none;" width="19">&nbsp;</td>
+                    <td style="border: none;" width="51">&nbsp;</td>
+                    <td style="border: none;" width="52">&nbsp;</td>
+                    <td style="border: none;" width="39">&nbsp;</td>
+                    <td style="border: none;" width="16">&nbsp;</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>
+            <span style="font-size: 18.0pt; line-height: 115%; font-family: 'Brush Script MT'; color: black;">Regards One Hat</span>
+        </p>
+    </div>
+    <p-footer>
+        <button type="button" pButton icon="fa-check" (click)="print()" label="Download"></button>
+        <button type="button" pButton icon="fa-close" (click)="cancel()" label="Cancel"></button>
+    </p-footer>
+</p-dialog>
+
+<!-- <div class="modal fade" id="m_modal_2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+
+    
+</div> -->

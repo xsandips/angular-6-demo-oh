@@ -1,0 +1,68 @@
+<p-dialog header="Send To" [(visible)]="emailModal" [modal]="true" [width]="850" (onHide)="cancelEmail()">
+    <div class="form-group m-form__group row">
+
+        <label class="col-lg-2 col-form-label">
+            Subject:
+        </label>
+        <div class="col-lg-6">
+            <input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="subject" class="form-control m-input">
+        </div>
+    </div>
+    <div class="pdf" #mailpdf>
+        <div id="pageHeader">Material Order: </div>
+        <br><br>
+        <div class="page">
+            <table *ngFor="let mo of moDetails" width="100%" style="border: 1px;">
+                <tr>
+                    <td>
+                        <b>
+                            Address:
+                        </b>
+                    </td>
+                    <td colspan="3">
+                        {{mo.deliveryAddress}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>
+                            Order Id:
+                        </b>
+                    </td>
+                    <td colspan="3">
+                        {{mo.id}}
+                    </td>
+                </tr>
+                <tr style="background-color: grey;">
+                    <td> - </td>
+                    <td>MO Date</td>
+                    <td>Name</td>
+                    <td>Quantity</td>
+                    <td>Delivery Date</td>
+                    <td>Requester</td>
+                    <td>Supplier</td>
+                    <td>Location</td>
+                </tr>
+                <ng-container>
+
+                    <tr *ngFor="let material of mo.material;let i=index;">
+                        <td>{{i+1}}</td>
+                        <td>{{mo.date | date: 'dd/MM/yyyy'}}</td>
+                        <td>{{material.name}}</td>
+                        <td>{{material.quantity}}</td>
+                        <td>{{mo.deliveryDate | date: 'dd/MM/yyyy'}}</td>
+                        <td>{{mo.orderRequester}}</td>
+                        <td>{{mo.supplier}}</td>
+                        <td>{{mo.location}}</td>
+                    </tr>
+                </ng-container>
+            </table>
+        </div><br><br>
+        <div id="pageFooter">One Hat</div>
+    </div>
+    <p-footer>
+        <button type="button" pButton icon="fa-check" (click)="uploadPdf()" label="Send"></button>
+        <button type="button" pButton icon="fa-close" (click)="emailModal=false" label="Cancel"></button>
+    </p-footer>
+
+</p-dialog>

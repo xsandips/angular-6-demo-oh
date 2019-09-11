@@ -1,0 +1,85 @@
+.width25{
+    width: 25%;
+}
+.ql-editor{
+    background: white;
+}
+.ui-steps .ui-steps-item {
+    width: 20%;
+}
+.Success, .Complete{
+    background-color: #34bfa3;
+    color: #fff;
+}
+.Reject, .Incomplete{
+    background-color: #f4516c;
+    color: #fff;
+}
+
+.step5_material .btn-group-sm>.m-btn--icon.m-btn--icon-only.btn, .m-btn--icon.m-btn--icon-only.btn-sm{
+    height: 25px;
+    width: 25px;
+}
+a.disabled {
+    pointer-events: none;
+    cursor: not-allowed; 
+ }
+ 
+
+.ui-fieldset-legend{
+  
+    height: 2.5em;
+    font-size: 15px;
+}
+.ui-fieldset-legend .m-btn.m-btn--icon {
+    margin-right: 0.7em;
+}
+
+table .form-group{
+    
+    padding: 0px 30px 0px 30px !important;    
+}
+.ui-multiselect {
+    width: 100% !important;
+}
+.ui-fieldset.ui-widget{
+    margin-bottom: 2%;
+}
+.emp .ui-state-disabled,.emp .ui-widget:disabled{
+    opacity: 1;
+}
+
+.step5_material .m-form.m-form--group-seperator .m-form__group, .m-form.m-form--group-seperator-dashed .m-form__group{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.table-headeing-dashboard{
+    border-bottom: 1px solid #ebedf2;    
+    padding: 0;
+    width: 100%;
+    padding: 0 2.2rem;
+    height: 5.1rem;
+}
+
+
+.text-dashborad-header-cl {
+margin-top: 20px;
+vertical-align: middle;
+font-size: 1.3rem;
+font-weight: 500;
+font-family: Roboto;
+color: #575962
+}
+
+
+.header-left-20{
+    padding: 0 20px;
+}
+
+.project-details-section-cl{
+    display: table-cell;
+    vertical-align: top;
+    padding-left: 1.43rem;
+    padding-top: .3rem;
+}

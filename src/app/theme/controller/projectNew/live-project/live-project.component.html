@@ -1,0 +1,64 @@
+<!-- BEGIN: Left Aside -->
+<!-- BEGIN: Left Aside -->
+
+<p-growl [value]="this.projectService.msgs"></p-growl>
+<div class="m-content">
+  <div class="row">
+    <div class="m-portlet" style="width:100%">
+      <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+          <div class="m-portlet__head-title">
+            <h3 class="m-portlet__head-text">
+              Project Lifecycle abc
+            </h3>
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
+            <!-- Lifecycle Component selected here -->
+            <!-- <app-lifecycle *ngIf="!this.projectService.isProjectListTable"></app-lifecycle> -->
+            <router-outlet></router-outlet>
+            <!-- Start Project List Table -->
+
+     <!-- Start Project List Table -->
+    <div class="col-xl-12" *ngIf="activeQuoteList" [hidden]="!this.projectService.isProjectListTable">
+      <div class="m-grid__item m-grid__item--fluid m-wrapper quotes">
+        <p-dataTable [value]="activeQuoteList" selectionMode="single" [(selection)]="this.projectService.activeQuote" (onRowDblclick)="onRowDblclick(this.projectService.activeQuote)">
+          <!-- <p-dataTable [value]="this.projectService.activeQuotes.data" selectionMode="single" [(selection)]="this.projectService.selectedQuote"> -->
+          <p-header>List of Projects</p-header>
+          <p-column field="name" header="Project Name"></p-column>
+          <p-column field="date" header="Start Date">
+            <ng-template let-col let-project="rowData" pTemplate="body">
+              <span>{{project.date | date:'dd/MM/yyyy'}}</span>
+            </ng-template>
+          </p-column>
+          <p-column field="outcome" header="Quote Status">
+            <ng-template let-col let-quote="rowData" pTemplate="body">
+              <span class="m-badge m-badge--wide {{quote.outcome}}">{{quote.outcome}}</span>
+            </ng-template>
+          </p-column>
+          <p-column field="projectStatus" header="Project Status">
+            <ng-template let-col let-quote="rowData" pTemplate="body">
+              <span class="m-badge m-badge--wide {{quote.projectStatus}}">{{quote.projectStatus}}</span>
+            </ng-template>
+          </p-column>
+          <p-column header="">
+            <ng-template let-col let-quote="rowData" pTemplate="body">
+              <span style="overflow: visible; width: 110px;">
+                <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details"
+                  (click)="onRowDblclick(quote)">
+                  <i class="la la-edit"></i>
+                </a>
+                <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" title="Delete">
+                  <i class="la la-trash"></i>
+                </a>
+              </span>
+            </ng-template>
+          </p-column>
+        </p-dataTable>
+      </div>
+      <!-- End Project List Table -->
+    </div>
+  </div>
+</div>

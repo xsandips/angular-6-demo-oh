@@ -1,0 +1,323 @@
+<div class="m-content">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="m-portlet m-portlet--tab">
+				<div class="m-portlet__head">
+					<div class="m-portlet__head-caption">
+						<div class="m-portlet__head-title">
+							<span class="m-portlet__head-icon m--hide">
+								<i class="la la-gear"></i>
+							</span>
+							<h3 class="m-portlet__head-text">
+								Add Employee
+							</h3>
+						</div>
+					</div>
+                </div>
+                <form class="m-form m-form--fit m-form--label-align-right" #faddemployee="ngForm" (ngSubmit)="faddemployee.valid && submitEmoloyeeInfo()" novalidate="novalidate">
+                        <div class="m-portlet__body">
+                            <div class="form-group m-form__group row">
+                                    <div class="col-md-10">
+                                        </div>
+                                        <div class="col-md-2">
+                                                    <label for="profile-image-input" style="max-height:124px">
+                                                    <img *ngIf="employee?.profileImage; else noImage" src="{{contentBase+employee.profileImage}}" onerror="this.src ='./assets/app/media/img/custom/users/user6.jpg';" class="m--marginless m--img-centered" alt="" style="max-height:124px;cursor:pointer">
+                                                     <ng-template #noImage><img src="./assets/app/media/img/custom/users/user6.jpg" class="m--marginless m--img-centered" style="max-height:124px"></ng-template>
+                                                    </label>
+                                                    <input id="profile-image-input" hidden="hidden" type="file" name="profileImage" (change)="beforUpload($event,'profileImage')">
+                                        </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <label for="example-text-input" class="col-4" style="text-align: -webkit-right;" >
+                                            Employee Type
+                                        </label>
+                                        <div class="col-8">
+                                                <select name="employeeType" [(ngModel)]="employee.employeeType_id" class="form-control m-input m-input--solid" title="Select page size" data-width="70px" data-selected="50" #employeeType (change)="onSelectedEmployeeType($event)">
+                                                        <option value=''>Select Employee Type</option>
+                                                        <option *ngFor="let emp of employeeTypeData" [value]="emp._id">{{emp.name}}</option>
+                                                </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                        <div class="row" *ngIf="employeeType?.options[employeeType.selectedIndex]?.text =='ABN' || employeeType?.options[employeeType.selectedIndex]?.text=='ACN'">
+                                                <label for="example-text-input" class="col-4" style="text-align: -webkit-right;">
+                                                  ABN/ACN Name:
+                                                </label>
+                                                <div class="col-8">
+                                                        <select  name="contractor" [(ngModel)]="employee.contractor_id" class="form-control m-input m-input--solid" title="Select page size"  data-width="70px" data-selected="50">
+                                                                <option value=''>Select ABN/ACN List</option>
+                                                                <option *ngFor="let c of contractorData" [value]="c.id">{{c.name}}</option>
+                                                        </select>
+                                                </div>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <label for="example-text-input" class="col-4" style="text-align: -webkit-right;" >
+                                            Employee Name
+                                        </label>
+                                        <div class="col-8">
+                                            <input class="form-control m-input" type="text" name="name" [(ngModel)]="employee.name" id="name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <label for="example-text-input" class="col-4" style="text-align: -webkit-right;" >
+                                            Mobile Number
+                                        </label>
+                                        <div class="col-8">
+                                                <input class="form-control m-input" type="text" name="mobileNumber" OnlyNumber='true' [(ngModel)]="employee.mobileNumber" id="mobileNumber" maxlength="10">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <label for="example-text-input" class="col-2" style="text-align: -webkit-right;" >
+                                            Employee Address
+                                        </label>
+                                        <div class="col-8">
+                                            <div class="row" style="margin-left: 0%;">
+                                                <input class="form-control m-input" type="text" name="addressLine1" [(ngModel)]="employee.address.addressLine1" id="addressLine1">
+                                            </div>
+                                            <br>
+                                            <div class="row" style="margin-left: 0%;">
+                                                <input class="form-control m-input" type="text" name="addressLine2" [(ngModel)]="employee.address.addressLine2" id="addressLine2">
+                                            </div>
+                                            <br>
+                                            <div class="row" style="margin-left: 0%;">
+                                                <input class="form-control m-input" type="text" name="addressLine3" [(ngModel)]="employee.address.addressLine3" id="addressLine3">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <label for="example-text-input" class="col-4" style="text-align: -webkit-right;" >
+                                            City:
+                                        </label>
+                                        <div class="col-8">
+                                            <div class="m-input-icon m-input-icon--right">
+                                             <input class="form-control m-input" type="text" name="city" [(ngModel)]="employee.address.city" id="city">
+                                             <span class="m-input-icon__icon m-input-icon__icon--right">
+                                                    <span>
+                                                        <i class="la la-map-marker"></i>
+                                                    </span>
+                                            </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                        <div class="row">
+                                            <label for="example-text-input" class="col-4" style="text-align: -webkit-right;" >
+                                                State / Province / Region:
+                                            </label>
+                                            <div class="col-8">
+                                              <div class="m-input-icon m-input-icon--right">
+                                                <input class="form-control m-input" type="text" name="state" [(ngModel)]="employee.address.state" id="state">
+                                                <span class="m-input-icon__icon m-input-icon__icon--right">
+                                                        <span>
+                                                            <i class="la la-map-marker"></i>
+                                                        </span>
+                                                </span>  
+                                            </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <label for="example-text-input" class="col-4" style="text-align: -webkit-right;" >
+                                            Zip / Postal Code:
+                                        </label>
+                                        <div class="col-8">
+                                            <div class="m-input-icon m-input-icon--right">
+                                                <input class="form-control m-input" type="text" name="zip" [(ngModel)]="employee.address.zip" OnlyNumber="true" id="zip">
+                                                <span class="m-input-icon__icon m-input-icon__icon--right">
+                                                        <span>
+                                                            <i class="la la-map-marker"></i>
+                                                        </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                        <div class="row">
+                                            <label for="example-text-input" class="col-4" style="text-align: -webkit-right;" >
+                                                Country:
+                                            </label>
+                                            <div class="col-8">
+                                                <div class="m-input-icon m-input-icon--right">
+                                                    <input class="form-control m-input" type="text" name="country" [(ngModel)]="employee.address.country" id="country">
+                                                    <span class="m-input-icon__icon m-input-icon__icon--right">
+                                                            <span>
+                                                                <i class="la la-map-marker"></i>
+                                                            </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <label for="example-text-input" class="col-4" style="text-align: -webkit-right;" >
+                                            Employee Qualification
+                                        </label>
+                                        <div class="col-8">
+                                            <input class="form-control m-input" type="text" name="qualification" [(ngModel)]="employee.qualification" id="qualification">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                        <div class="row" *ngIf="employeeType?.options[employeeType.selectedIndex]?.text=='ACN' || employeeType?.options[employeeType.selectedIndex]?.text=='ABN'">
+                                            <label for="example-text-input" class="col-4" style="text-align: -webkit-right;" >
+                                                {{employeeType?.options[employeeType.selectedIndex]?.text}} License
+                                            </label>
+                                            <div class="col-8">
+                                                <input class="form-control m-input" type="text" name="license" [(ngModel)]="employee.licenseNumber" id="license">
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <label for="example-text-input" class="col-4" style="text-align: -webkit-right;" >
+                                            Rate
+                                        </label>
+                                        <div class="col-8">
+                                            <input class="form-control m-input" type="text" OnlyNumber='true' name="rate" [(ngModel)]="employee.rate" id="rate">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <label for="example-text-input" class="col-4" style="text-align: -webkit-right;" >
+                                            Super
+                                        </label>
+                                        <div class="col-8">
+                                            <input class="form-control m-input" type="text" name="super" [(ngModel)]="employee.super" id="super">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <label for="example-text-input" class="col-4" style="text-align: -webkit-right;" >
+                                            Compliance cards
+                                        </label>
+                                        <div class="col-4">
+                                            <input class="form-control m-input" type="text" OnlyNumber='true' name="complianceCards" [(ngModel)]="employee.complianceCards" id="complianceCards">
+                                        </div>
+                                        <div class="col-4">
+                                                <button type="button" class="btn btn-success" style="padding-right:5px" (click)="complianceCardsUrl.click()">
+                                                        Upload
+                                                </button>  
+                                                <!-- <input type="file"  name="complianceCardsUrl" ngFileSelect  [options]="options" (uploadOutput)="onUploadOutput($event,'complianceCardsUrl')" [uploadInput]="uploadInput" #complianceCardsUrl /> -->
+                                                <input type="file" hidden name="complianceCardsUrl" (change)="beforUpload($event,'complianceCardsUrl')" #complianceCardsUrl/>
+                                                <button type="button" class="btn btn-brand" *ngIf="employee.complianceCardsUrl" (click)="viewFile(employee.complianceCardsUrl)">
+                                                   View     
+                                                </button>                                         
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <label for="example-text-input"  class="col-4" style="text-align: -webkit-right;" >
+                                            Driving license
+                                        </label>
+                                        <div class="col-4">
+                                            <input class="form-control m-input" type="text" name="drivingLicense" [(ngModel)]="employee.drivingLicense" id="drivingLicense">
+                                        </div>
+                                        <div class="col-4">
+                                                <button type="button" class="btn btn-success" style="padding-right:5px" (click)="drivingLicenseUrl.click()">
+                                                        Upload
+                                                </button> 
+                                                <input type="file" hidden name="drivingLicenseUrl" (change)="beforUpload($event,'drivingLicenseUrl')" #drivingLicenseUrl/>
+                                                <button type="button" class="btn btn-brand" *ngIf="employee.drivingLicenseUrl" (click)="viewFile(employee.drivingLicenseUrl)">
+                                                   View      
+                                                </button>                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <label for="example-text-input" class="col-4" style="text-align: -webkit-right;" >
+                                            Employee Tickets
+                                        </label>
+                                        <div class="col-4">
+                                            <input class="form-control m-input" type="text" OnlyNumber='true' name="tickets" [(ngModel)]="employee.tickets" id="tickets">
+                                        </div>
+                                        <div class="col-4">
+                                                <button type="button" class="btn btn-success" style="padding-right:5px" (click)="ticketsUrl.click()">
+                                                        Upload
+                                                </button> 
+                                                <input type="file" hidden name="ticketsUrl" (change)="beforUpload($event,'ticketsUrl')" #ticketsUrl/>
+                                                <button type="button" class="btn btn-brand" *ngIf="employee.ticketsUrl" (click)="viewFile(employee.ticketsUrl)">
+                                                    View       
+                                                </button>                                            
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <label for="example-text-input" class="col-2" style="text-align: -webkit-right;" >
+                                            Other details
+                                        </label>
+                                        <div class="col-8">
+                                            <input class="form-control m-input" type="text" name="otherDetails" [(ngModel)]="employee.otherDetails" id="otherDetails" maxlength="200">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <div class="col-md-6">
+                                        <div class="row" *ngIf="employeeType?.options[employeeType.selectedIndex]?.text !='PAYG'">
+                                                <label for="example-text-input" class="col-4" style="text-align: -webkit-right;" >
+                                                   ABN/ACN Claim Amount
+                                                </label>
+                                                <div class="col-8">
+                                                    <input class="form-control m-input" type="text" OnlyNumber='true' name="claimAmount" [(ngModel)]="employee.claimAmount" id="claimAmount">
+                                                </div>
+                                        </div>
+                                </div>
+                            </div>                           
+                        </div>
+                        <div class="m-portlet__foot m-portlet__foot--fit">
+                            <div class="m-form__actions" style="text-align: right;">
+                                <div class="row">
+                                    <div class="col-10">
+                                        <button type="submit" class="btn btn-success">
+                                            Add
+                                        </button>
+                                        <button type="button" (click)="cancel()" class="btn btn-primary">
+                                            Cancel
+                                        </button>    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>       
+                </form>
+			</div>
+        </div>
+    </div>
+</div>
